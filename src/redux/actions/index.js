@@ -14,23 +14,23 @@ export const addEmail = (email) => ({
 });
 
 export const saveWalletData = (payload) => ({
-  type: SAVE_WALLET,
+  type: ADD_WALLET,
   payload,
 });
 
-function failedRequest(error) {
-  return {
-    type: REQUEST_FAILED,
-    payload: error,
-  };
-}
+// function failedRequest(error) {
+//   return {
+//     type: REQUEST_FAILED,
+//     payload: error,
+//   };
+// }
 
 export function fetchCurrencies() {
-  return (dispatch) => {
+  return async (dispatch) => {
     dispatch(requestCurrencie());
     return fetch('https://economia.awesomeapi.com.br/json/all')
       .then((response) => response.json())
-      .then((json) => dispatch(saveWalletData(json)))
-      .catch((error) => dispatch(failedRequest(error)));
+      .then((json) => dispatch(saveWalletData(json)));
+    // .catch((error) => dispatch(failedRequest(error)));
   };
 }

@@ -1,7 +1,16 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { fetchCurrencies } from '../redux/actions';
 
 class WalletForm extends Component {
+  componentDidMount() {
+    const { dispatch } = this.props;
+    dispatch(fetchCurrencies());
+  }
+
   render() {
+    const { currencies } = this.props;
     return (
       <form>
 
@@ -9,7 +18,7 @@ class WalletForm extends Component {
           Valor
           <input
             name="valor"
-            data-test-id="value-input"
+            data-testid="value-input"
             type="number"
           />
         </label>
@@ -18,21 +27,28 @@ class WalletForm extends Component {
           Descrição
           <input
             name="description"
-            data-test-id="description-input"
+            data-testid="description-input"
           />
         </label>
-        {/*
-          <label>
-         <select data-testid="currency-input">
-          <option></option>
-         </select>
-        </label> */}
+
+        <label htmlFor="moeda">
+          <select data-testid="currency-input" name="moeda">
+            { currencies.map((currency) => (
+              <option key={ currency } value={ currency }>
+                {' '}
+                { currency }
+                {' '}
+              </option>
+            ))}
+
+          </select>
+        </label>
 
         <label htmlFor="pagamento">
           Método de pagamento
           <select
             name="pagamento"
-            data-test-id="method-input"
+            data-testid="method-input"
           >
             <option>Dinheiro</option>
             <option>Cartão de crédito</option>
@@ -43,7 +59,7 @@ class WalletForm extends Component {
           Categoria
           <select
             name="categoria"
-            data-test-id="tag-input"
+            data-testid="tag-input"
           >
             <option>Alimentação</option>
             <option>Lazer</option>
@@ -58,4 +74,19 @@ class WalletForm extends Component {
   }
 }
 
-export default WalletForm;
+WalletForm.propTypes = {
+
+  dispatch: PropTypes.func.isRequired,
+  currencies: PropTypes.arrayOf(PropTypes.string).isRequired,
+
+};
+
+const mapStateToProps = ({ wallet }) => ({
+
+  currencies: wallet.currencies,
+
+});
+
+export default connect(mapStateToProps)(WalletForm);
+
+// Pair programming com os colegas do Onlinestore
