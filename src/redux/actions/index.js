@@ -1,8 +1,14 @@
 // Coloque aqui suas actions
 export const ADD_EMAIL = 'ADD_EMAIL';
 export const ADD_WALLET = 'ADD_WALLET';
-export const REQUEST_FAILED = 'REQUEST_FAILED';
+// export const REQUEST_FAILED = 'REQUEST_FAILED';
 export const REQUEST_CURRENCIE = 'REQUEST_CURRENCIE';
+export const SAVE_EXPENSES = 'SAVE_EXPENSES';
+
+export const saveExpenses = (payload) => ({
+  type: SAVE_EXPENSES,
+  payload,
+});
 
 function requestCurrencie() {
   return { type: REQUEST_CURRENCIE };
