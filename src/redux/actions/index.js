@@ -4,6 +4,12 @@ export const ADD_WALLET = 'ADD_WALLET';
 // export const REQUEST_FAILED = 'REQUEST_FAILED';
 export const REQUEST_CURRENCIE = 'REQUEST_CURRENCIE';
 export const SAVE_EXPENSES = 'SAVE_EXPENSES';
+export const DEL_EXPENSES = 'DEL_EXPENSES';
+
+export const delExpenses = (payload) => ({
+  type: DEL_EXPENSES,
+  payload,
+});
 
 export const saveExpenses = (payload) => ({
   type: SAVE_EXPENSES,
