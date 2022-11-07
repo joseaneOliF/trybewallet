@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { delExpenses } from '../redux/actions';
+import { delExpenses, editOn } from '../redux/actions';
 
 class Table extends Component {
+  funcEditBtn = (id) => {
+    const { dispatch } = this.props;
+    dispatch(editOn(id));
+  };
+
   deleteBtn = (id) => {
     const { expenses, dispatch } = this.props;
     const filterExp = expenses.filter((element) => element.id !== id);
@@ -43,7 +48,14 @@ class Table extends Component {
               </td>
               <td>Real</td>
               <td>
-                <button type="button">Editar</button>
+                <button
+                  type="button"
+                  data-testid="edit-btn"
+                  onClick={ () => this.funcEditBtn(element.id) }
+                >
+                  Editar
+
+                </button>
                 <button
                   type="button"
                   data-testid="delete-btn"

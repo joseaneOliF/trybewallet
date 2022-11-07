@@ -5,7 +5,24 @@ export const ADD_WALLET = 'ADD_WALLET';
 export const REQUEST_CURRENCIE = 'REQUEST_CURRENCIE';
 export const SAVE_EXPENSES = 'SAVE_EXPENSES';
 export const DEL_EXPENSES = 'DEL_EXPENSES';
+export const EDIT_FORM = 'EDIT_FORM';
+export const EDIT_OFF = 'EDIT_OFF';
+export const EDIT_ON = 'EDIT_ON';
 
+export const editForm = (payload) => ({
+  type: EDIT_FORM,
+  payload,
+});
+
+export const editOff = (payload) => ({
+  type: EDIT_OFF,
+  payload,
+});
+
+export const editOn = (payload) => ({
+  type: EDIT_ON,
+  payload,
+});
 export const delExpenses = (payload) => ({
   type: DEL_EXPENSES,
   payload,
